@@ -246,6 +246,10 @@ html, body {
   margin: 0;
   padding: 0; }
 
+.challenge-input {
+  height: 200px !important;
+}
+
 * {
   box-sizing: border-box; }
 

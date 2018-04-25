@@ -8,12 +8,33 @@
 
 .login-form-container,
 .signup-form-container {
-  width: 100%; }
+  width: auto; }
 
 .auth-form {
-  margin: auto;
-  width: 100%;
-  max-width: 400px; }
+  display: block;
+  margin-top: 100px;
+  width: auto;
+  max-width: 800px;
+  height: 1000px;
+  margin-left: 40px;
+  float: right;
+  position: relative;
+  left: -25%;
+}
 
 .auth-link {
   margin-left: 5px; }
+
+
+/* input {
+  width: 20px;
+} */
+
+.title-input {
+  width: 20px !important;
+}
+
+.test-case-input {
+  position:absolute; 
+  bottom:0;
+}

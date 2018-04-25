@@ -41,24 +41,27 @@ class AddChallenge extends Component {
           className="landing-page-logo"
         />
         <form className="auth-form">
-          <Input
+          <Input 
+            className='title-input'
             name='title'
             type='title'
-            placeholder={'enter title'}
+            placeholder={'Enter title'}
             onChange={this.handleChallengeInput}
-            />
-          <Input
-            name='content'
-            type='content'
-            placeholder={'enter content'}
-            onChange={this.handleChallengeInput}
-            />
+            /><div>  </div>
           <Input 
             name='difficulty'
             type='difficulty'
-            placeholder={'enter your difficulty'}
+            placeholder={'Enter your difficulty'}
+            onChange={this.handleChallengeInput}
+            /> <br/><br/><br/>
+          <Input 
+            name='content'
+            type='content'
+            placeholder={'Enter content'}
             onChange={this.handleChallengeInput}
             />
+
+            <textarea className="test-case-input" name="txtDescEd" cols="60" rows="10"></textarea>
           <Button
             backgroundColor="red"
             color="white"
