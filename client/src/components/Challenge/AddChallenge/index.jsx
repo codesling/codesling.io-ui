@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Input from '../../globals/forms/Input';
+import TextArea from '../../globals/forms/TextArea';
 import Button from '../../globals/Button/';
 import Logo from '../../globals/Logo';
 import EditorHeader from '../../globals/EditorHeader';
@@ -12,17 +13,21 @@ class AddChallenge extends Component {
   state = { 
     title: '',
     content: '',
+    output: '',
+    tests: '',
     difficulty: null
    }
 
   submitChallenge = async (e) => {
     e.preventDefault();
-    const { title, content, difficulty } = this.state;
+    const { title, content, difficulty, output, tests } = this.state;
     const id = localStorage.getItem('id');
     const body = {
       title,
       content,
       difficulty,
+      output,
+      tests,
       user_id: id,
       type: 0
     }
@@ -57,24 +62,53 @@ class AddChallenge extends Component {
       <EditorHeader history={this.props.history} />
       <br/>
         <form className="auth-form">
-          <Input
-            name='title'
-            type='title'
-            placeholder={'enter title'}
-            onChange={this.handleChallengeInput}
-            />
-          <Input
-            name='content'
-            type='content'
-            placeholder={'enter content'}
-            onChange={this.handleChallengeInput}
-            />
-          <Input 
-            name='difficulty'
-            type='difficulty'
-            placeholder={'enter your difficulty'}
-            onChange={this.handleChallengeInput}
-            />
+          <div className="left-form">
+            <Input
+              name='title'
+              type='title'
+              placeholder={'enter title'}
+              onChange={this.handleChallengeInput}
+              />
+              <br/>
+              <br/>
+            <Input 
+              name='output'
+              type='output'
+              placeholder={'enter expected output'}
+              onChange={this.handleChallengeInput}
+              />
+            <br/>
+            <br/>
+            <Input
+              name='difficulty'
+              type='difficulty'
+              placeholder={'enter your difficulty'}
+              onChange={this.handleChallengeInput}
+              />
+          </div>
+          <div className="right-form">
+            <TextArea
+              name='content'
+              type='content'
+              cols={75}
+              rows={15}
+              resize="none"
+              placeholder={'enter content'}
+              onChange={this.handleChallengeInput}
+              />
+              <br/>
+              <br/>
+            <TextArea
+              name='tests'
+              type='tests'
+              cols={75}
+              rows={15}
+              resize="none"
+              placeholder={'enter tests'}
+              onChange={this.handleChallengeInput}
+              />
+          </div>
+          <br/> <br/> <br/> <br/> <br/> <br/>
           <Button
             backgroundColor="red"
             color="white"

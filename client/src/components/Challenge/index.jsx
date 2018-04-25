@@ -3,8 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import EditorHeader from '../globals/EditorHeader';
 
-import AddChallenge from './AddChallenge/index.jsx';
-
 class Challenge extends Component {
   state = {
     challenges: []
