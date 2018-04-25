@@ -4,6 +4,7 @@ import axios from 'axios';
 import Input from '../../globals/forms/Input';
 import Button from '../../globals/Button/';
 import Logo from '../../globals/Logo';
+import EditorHeader from '../../globals/EditorHeader';
 
 import './Auth.css';
 
@@ -53,9 +54,8 @@ class AddChallenge extends Component {
   render() {
     return (
       <div className="login-form-container">
-        <Logo
-          className="landing-page-logo"
-        />
+      <EditorHeader history={this.props.history} />
+      <br/>
         <form className="auth-form">
           <Input
             name='title'
