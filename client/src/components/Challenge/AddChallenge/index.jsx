@@ -33,7 +33,6 @@ class AddChallenge extends Component {
           challenge_id: result.data[0].id,
           type: 0
         }
-        console.log('userbody is ', userBody, ' and result from server is ', result)
         try {
           const userResult = await axios.post('http://localhost:3396/api/usersChallenges', userBody);
           userResult ? this.props.history.push('/home') : this.props.history.push('/addChallenge');
