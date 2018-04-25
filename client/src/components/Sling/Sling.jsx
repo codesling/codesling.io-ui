@@ -5,7 +5,7 @@ import axios from 'axios';
 import { throttle } from 'lodash';
 
 import Stdout from './StdOut/index.jsx';
-import EditorHeader from './EditorHeader';
+import EditorHeader from '../globals/EditorHeader';
 import Button from '../globals/Button';
 
 import 'codemirror/mode/javascript/javascript.js';
@@ -79,11 +79,11 @@ class Sling extends Component {
   }
 
   render() {
-    const { socket, player } = this.props;
+    const { socket, player, history } = this.props;
     if (player === 1) {
       return (
         <div className="sling-container">
-          <EditorHeader />
+          <EditorHeader history={history} />
           <div className="code1-editor-container">
             <CodeMirror
               editorDidMount={this.initializeEditor}
@@ -126,7 +126,7 @@ class Sling extends Component {
     } else {
       return (
         <div className="sling-container">
-          <EditorHeader />
+          <EditorHeader history={this.props.history} />
           <div className="code1-editor-container">
             <CodeMirror
               editorDidMount={this.initializeEditor}

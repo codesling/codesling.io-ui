@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-
-import AddChallenge from './AddChallenge/index.jsx';
+import EditorHeader from '../globals/EditorHeader';
 
 class Challenge extends Component {
   state = {
@@ -15,19 +14,26 @@ class Challenge extends Component {
 
   fetchAllChallenges = async () => {
     const id = localStorage.getItem('id');
-    const { data } = await axios.get(`http://localhost:3396/api/usersChallenges/${id}`)
-    this.setState({ challenges: data.rows });
+    const { data } = await axios.get(`http://localhost:3396/api/usersChallenges/${id}`);
+    if(data.length) {
+      this.setState({ challenges: data });
+    }
   }
 
   render() {
     return (
       <div>
+      <EditorHeader history={this.props.history} />
+      <br/>
         {this.state.challenges.map(challenge => {
           return (
-            <div>
+            <ul>
+              <li>title: {challenge.title} </li>
               <li>content: {challenge.content} </li>
               <li>difficulty: {challenge.difficulty} </li>
-            </div>
+              <li>rating: {challenge.rating} </li>
+              <li></li>
+            </ul>
           )
         })}
       </div>

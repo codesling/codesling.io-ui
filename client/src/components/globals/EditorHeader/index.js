@@ -1,17 +1,17 @@
 import React from 'react';
-import Logo from '../../globals/Logo';
+import Logo from '../Logo';
 
 import EditorNavbar from './EditorNavbar';
 
 import './EditorHeader.css';
 
-const EditorHeader = () => (
+const EditorHeader = (props) => (
   <div className="editor-header">
     <div className="logo-container">
-      <Logo />
+      <Logo history={props.history}/>
     </div>
     <div className="navbar-container">
-      <EditorNavbar />
+      <EditorNavbar history={props.history} />
     </div>
   </div>
 );
