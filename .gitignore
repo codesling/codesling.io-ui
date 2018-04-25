@@ -61,3 +61,6 @@ bundle.js
 bundle.js.map
 
 graveyard.js
+
+# apple bullshit
+.DS_Store
