@@ -41,6 +41,7 @@ class AddChallenge extends Component {
           className="landing-page-logo"
         />
         <form className="auth-form">
+        <div>
           <Input 
             className='title-input'
             name='title'
@@ -60,8 +61,8 @@ class AddChallenge extends Component {
             placeholder={'Enter content'}
             onChange={this.handleChallengeInput}
             />
-
-            <textarea className="test-case-input" name="txtDescEd" cols="60" rows="10"></textarea>
+        </div>
+            <textarea className="test-case-input" name="txtDescEd" cols="60" rows="10" placeholder={'Enter test cases'}></textarea>
           <Button
             backgroundColor="red"
             color="white"
