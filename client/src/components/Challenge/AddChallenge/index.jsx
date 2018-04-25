@@ -26,8 +26,6 @@ class AddChallenge extends Component {
       title,
       content,
       difficulty,
-      output,
-      tests,
       user_id: id,
       type: 0
     }
@@ -41,9 +39,19 @@ class AddChallenge extends Component {
         }
         try {
           const userResult = await axios.post('http://localhost:3396/api/usersChallenges', userBody);
-          userResult ? this.props.history.push('/home') : this.props.history.push('/addChallenge');
         } catch(userErr) {
-         throw new Error(userErr);
+          throw new Error(userErr);
+        }
+        const testBody = {
+          content: tests,
+          output: output,
+          challenge_id: result.data[0].id,
+        }
+        try {
+          const testResult = await axios.post('http://localhost:3396/api/testCases', testBody);
+          testResult ? this.props.history.push('/home') : this.props.history.push('/addChallenge');
+        } catch(testError) {
+          throw new Error(testError);
         }
       }
     } catch(err) {
