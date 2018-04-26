@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import randomstring from 'randomstring';
-import axios from 'axios';
+import React, { Component } from "react";
+import randomstring from "randomstring";
+import axios from "axios";
 
-import Button from '../globals/Button';
-import Logo from '../globals/Logo';
+import Button from "../globals/Button";
+import Logo from "../globals/Logo";
+import EditorHeader from "../Sling/EditorHeader";
 
-import './LandingPage.css';
+import "./LandingPage.css";
 
 let slingId;
 
@@ -13,16 +14,16 @@ class Home extends Component {
   state = {
     allChallenges: [],
     selectedChallenge: {}
-   }
+  };
 
-   async componentDidMount() {
-    const { data } = await axios.get(`http://localhost:3396/api/challenges`)
+  async componentDidMount() {
+    const { data } = await axios.get(`http://localhost:3396/api/challenges`);
     this.setState({ allChallenges: data });
-   }
+  }
 
   randomSlingId = () => {
     slingId = `${randomstring.generate()}`;
-  }
+  };
 
   handleDuelClick = () => {
     this.randomSlingId();
@@ -32,35 +33,35 @@ class Home extends Component {
         challenge: this.state.selectedChallenge
       }
     });
-  }
-  
-  handleAddChallengeClick = () => {
-    this.props.history.push('/addChallenge');
-  }
+  };
 
-  handleChallengeSelect = (e) => {
+  handleAddChallengeClick = () => {
+    this.props.history.push("/addChallenge");
+  };
+
+  handleChallengeSelect = e => {
     e.preventDefault();
     const { value } = e.target;
     this.setState({ selectedChallenge: value });
-  }
+  };
 
   render() {
     return (
       <div className="landing-page-container">
-        <Logo
-          className="landing-page-logo"
-        />
+        <EditorHeader props={this.props} />
         <br />
-        <select onChange={(e) => this.handleChallengeSelect(e)}>
+        <select
+          className="challenge-selector"
+          onChange={e => this.handleChallengeSelect(e)}
+        >
+          <option>Select a Challenge</option>
           {this.state.allChallenges.map(challenge => {
             return (
-            <option
-              value={JSON.stringify(challenge)}
-            >
-              {challenge.title}
-            </option>)
-          }
-          )}
+              <option key={challenge.id} value={JSON.stringify(challenge)}>
+                {challenge.title}
+              </option>
+            );
+          })}
         </select>
         <br />
         <br />
