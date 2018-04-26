@@ -42,33 +42,39 @@ class AddChallenge extends Component {
         />
         <form className="auth-form">
         <div>
-          <Input 
+          <label>Title: </label>
+          <Input className="title-input"
             className='title-input'
             name='title'
             type='title'
             placeholder={'Enter title'}
             onChange={this.handleChallengeInput}
-            /><div>  </div>
+            />
+          <label>Difficulty: </label>
           <Input 
             name='difficulty'
             type='difficulty'
-            placeholder={'Enter your difficulty'}
+            placeholder={'Enter problem difficulty'}
             onChange={this.handleChallengeInput}
             /> <br/><br/><br/>
           <Input 
             name='content'
             type='content'
-            placeholder={'Enter content'}
+            placeholder={'Enter problem prompt'}
             onChange={this.handleChallengeInput}
             />
         </div>
+        <div>
             <textarea className="test-case-input" name="txtDescEd" cols="60" rows="10" placeholder={'Enter test cases'}></textarea>
+        </div>
+        <div>
           <Button
             backgroundColor="red"
             color="white"
             text="Add Challenge"
             onClick={(e) => this.submitChallenge(e)}
             />
+        </div>
         </form>
       </div>
     );
