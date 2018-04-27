@@ -19,7 +19,7 @@ const Button = ({
     backgroundColor = 'gray';
   }
   if (error) {
-    backgroundColor = 'red';
+    backgroundColor = 'gray';
   }
 
   if (error) {

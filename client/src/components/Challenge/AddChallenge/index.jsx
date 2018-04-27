@@ -129,7 +129,7 @@ class AddChallenge extends Component {
         </div>) : 
           <Button
             error='true'
-            backgroundColor="red"
+            backgroundColor="black"
             color="white"
             text="Add Challenge"
             onClick={(e) => this.submitChallenge(e)}
