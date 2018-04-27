@@ -35,7 +35,7 @@ before_script:
   - yarn build
 
 script:
-  - yarn start &
+  - yarn start
   - find . -type d -name "*node_modules*" -prune -o -type f -print | zip latest.zip -@
   - mkdir -p dpl_cd_upload
   - mv latest.zip dpl_cd_upload/latest.zip
