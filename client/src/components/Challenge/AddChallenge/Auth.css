@@ -31,7 +31,8 @@
 } */
 
 .title-input {
-  width: 20px !important;
+  /* width: 20px !important; */
+  margin-right: 10px;
 }
 
 .test-case-input {
