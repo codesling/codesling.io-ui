@@ -6,26 +6,26 @@ cache:
   directories:
     - node_modules
 
-# deploy:
-#   - provider: s3
-#     access_key_id: $AWS_ACCESS_KEY
-#     secret_access_key: $AWS_SECRET_KEY
-#     local_dir: dpl_cd_upload
-#     skip_cleanup: true
-#     on: &2
-#       repo: Pot4to/codesling.io-api
-#     bucket: aaronbucket123
-#     region: us-west-1
-#   - provider: codedeploy
-#     access_key_id: $AWS_ACCESS_KEY
-#     secret_access_key: $AWS_SECRET_KEY
-#     bucket: aaronbucket123
-#     key: latest.zip
-#     bundle_type: zip
-#     application: codesling
-#     deployment_group: codesling
-#     region: us-west-1
-#     on: *2
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    local_dir: dpl_cd_upload
+    skip_cleanup: true
+    on: &2
+      repo: Pot4to/codesling.io-api
+    bucket: aaronbucket123
+    region: us-west-1
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: aaronbucket123
+    key: latest.zip
+    bundle_type: zip
+    application: codesling
+    deployment_group: codesling
+    region: us-west-1
+    on: *2
 
 before_script:
   - yarn buildEnv
