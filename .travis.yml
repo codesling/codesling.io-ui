@@ -31,7 +31,6 @@ before_script:
   - yarn buildEnv
   - yarn setup:server
   - yarn setup:client
-  - yarn start:server
   - yarn build
 
 script:
