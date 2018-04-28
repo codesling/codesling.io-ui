@@ -13,18 +13,35 @@ const Button = ({
   className,
   onClick,
   id,
-  backgroundColor
+  backgroundColor,
 }) => {
   if (loading) {
     backgroundColor = 'gray';
   }
   if (error) {
-    backgroundColor = 'red';
+    backgroundColor = 'gray';
+  }
+
+  if (error) {
+    return (
+      <div className={`button-container ${className ? className : ''}`}>
+        <button
+          disabled="true"
+          id={id}
+          className={`${color}-text palette-${backgroundColor} ${!text ? 'no-text' : ''}`}
+          type={type}
+        > 
+        <span>
+          {text}
+        </span>
+        </button>
+      </div>
+    );
   }
 
   return (
     <div className={`button-container ${className ? className : ''}`}>
-      <button 
+      <button
         id={id}
         className={`${color}-text palette-${backgroundColor} ${!text ? 'no-text' : ''}`}
         onClick={onClick}
