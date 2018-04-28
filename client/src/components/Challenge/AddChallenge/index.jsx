@@ -15,11 +15,7 @@ class AddChallenge extends Component {
     testCase: '',
     validated: false,
    }
-  
-  componentDidMount() {
-    // console.log('component state after mounting',this.state)
-  }
-  
+
   validateInputs(name, value) {
     let contentValidated = !!this.state.content.length;
     let testCaseValidated = !!(Array.isArray(this.state.testCase));
@@ -29,8 +25,8 @@ class AddChallenge extends Component {
           contentValidated = true;
         }
       } else if (name === 'testCase') {
-        console.log('flag', JSON.parse(value)[0].arguments)
-        if (Array.isArray(JSON.parse(value)) && typeof (((JSON.parse(value))[0]) !== undefined)) {
+        
+        if (value.includes('function')) {
           testCaseValidated = true;
         }
       }
@@ -42,10 +38,6 @@ class AddChallenge extends Component {
     } catch (e) {
       this.setState({ validated: false });
     }
-  }
-
-  isValidated() {
-    return this.state.validated;
   }
 
   submitChallenge = async (e) => {
@@ -60,6 +52,7 @@ class AddChallenge extends Component {
       type: 0
     }
     const result = await axios.post('http://localhost:3396/api/challenges/addChallenge', body);
+    post(`http://localhost:3396/api/testCases/${result.data[0].id}`);
     this.props.history.push('/home');
   }
 
@@ -67,10 +60,6 @@ class AddChallenge extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     this.validateInputs(name, value);
-
-    // this.setState({ [name]: value });
-    // console.log('state inside event', this.state)
-    
   }
 
   handleDifficultySelect = (e) => {
@@ -88,7 +77,7 @@ class AddChallenge extends Component {
         />
         <form className="auth-form">
         <div>
-          <label>Title </label>
+          <label>Title </label><br/>
           <Input className="title-input"
             className='title-input'
             name='title'
@@ -96,32 +85,26 @@ class AddChallenge extends Component {
             placeholder={''}
             onChange={this.handleChallengeInput}
           /><br/><br/>
-          <label>Difficulty
+          <label>Difficulty<br/>
           <select onChange={(e) => this.handleDifficultySelect(e)} defaultValue='2'>
             <option value='1'>Easy</option>
             <option value='2'>Medium</option>
             <option value='3'>Hard</option>
           </select>
           </label> <br/><br/>
-          {/* <Input 
-            name='content'
-            type='content'
-            placeholder={'Enter problem prompt'}
-            onChange={this.handleChallengeInput}
-            /> */}
         </div>
-        <label>Challenge Description</label>
+        <label>Description</label>
         <div>
-            <textarea className="prompt-input" name="content" cols="60" rows="5" placeholder={'Enter challenge prompt'} onChange={this.handleChallengeInput}></textarea>
+            <textarea className="prompt-input" name="content" cols="80" rows="5" placeholder={'Enter challenge prompt'} onChange={this.handleChallengeInput}></textarea>
         </div> <br/>
-        <label>Test Cases <br/> Please input test case in the following format: <br/> {'[ {arguments: FILL_ME_IN, expected: FILL_ME_IN} ]'}</label>
+        <label>Test Cases <br/> &nbsp;&nbsp;Please enter each test case as shown in the sample below:</label>
         <div>
-            <textarea className="test-case-input" name="testCase" cols="60" rows="10" placeholder={'Enter test cases'} onChange={this.handleChallengeInput}></textarea>
+            <textarea className="test-case-input" name="testCase" cols="80" rows="15" onChange={this.handleChallengeInput}>{'function tests () {\n  var expected = 1;\n  var actual = func(1);\n  if (expected === actual) {\n    console.log("solved");\n    return actual;\n  } else {\n    console.log("expected " + expected + ", but got " + actual);\n  }\n}\n\ntests();'}</textarea>
         </div>
         { this.state.validated ? 
         (<div>
           <Button
-            backgroundColor="blue"
+            backgroundColor="red"
             color="white"
             text="Add Challenge"
             onClick={(e) => this.submitChallenge(e)}
