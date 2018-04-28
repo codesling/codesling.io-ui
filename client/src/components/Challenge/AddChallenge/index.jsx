@@ -42,17 +42,18 @@ class AddChallenge extends Component {
 
   submitChallenge = async (e) => {
     e.preventDefault();
-    const { title, content, difficulty } = this.state;
+    const { title, content, difficulty, testCase } = this.state;
     const id = localStorage.getItem('id');
     const body = {
       title,
       content,
       difficulty,
       user_id: id,
-      type: 0
+      type: 0,
+      testCase,
     }
     const result = await axios.post('http://localhost:3396/api/challenges/addChallenge', body);
-    post(`http://localhost:3396/api/testCases/${result.data[0].id}`);
+    post(`http://localhost:3396/api/testCases/${result.data[0].id}`, body.testCase);
     this.props.history.push('/home');
   }
 
